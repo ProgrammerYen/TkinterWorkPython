@@ -33,5 +33,4 @@ button = Button(root, text="Exit Program", font=(None, 25), bg="#000", fg="#fff"
                 activeforeground="#fff", width=19)
 button.grid(row=0, column=0)
 
-
 mainloop()
