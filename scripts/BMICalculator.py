@@ -1,3 +1,4 @@
+import time
 from tkinter import *
 from tkinter import messagebox
 
@@ -40,13 +41,9 @@ name.pack(ipadx=50, ipady=10, anchor=CENTER)
 def askSubmit():
     global bmi
     global showBmi
+    
     response = messagebox.askyesno("Verifying Submission", "Are you sure you wish to submit this form?")
     if response == 1:
-        fileName = "nameAge.csv"
-        APPEND = "a"    
-            
-        with open(fileName, APPEND, encoding="utf-8") as fileObj:
-                fileObj.write(str(nameact.get()) + ", " + str(ageact.get()) + ", " + str(round(float(name.get())/(float(age.get()))**2, 3)) + "\n")
         try:
             showBmi.pack_forget()
             bmi.pack_forget()
@@ -57,20 +54,30 @@ def askSubmit():
             
 
             if bmiActual < 18.5:
-                showBmi = Label(root, fg="#fff", bg="#000", font=("Calibri", 19), bd=0, text="Weight Status: underweight")           
+                weightStatus = "underweight"
+                showBmi = Label(root, fg="#fff", bg="#000", font=("Calibri", 19), bd=0, text="Weight Status: " + str(weightStatus))           
                 showBmi.pack()
 
             elif bmiActual < 25:
-                showBmi = Label(root, fg="#fff", bg="#000", font=("Calibri", 19), bd=0, text="Weight status: healthy")    
+                weightStatus = "healthy"
+                showBmi = Label(root, fg="#fff", bg="#000", font=("Calibri", 19), bd=0, text="Weight status: " + str(weightStatus))    
                 showBmi.pack()
 
             elif bmiActual < 30:
-                showBmi = Label(root, fg="#fff", bg="#000", font=("Calibri", 19), bd=0, text="Weight status: overweight")
+                weightStatus = "overweight"
+                showBmi = Label(root, fg="#fff", bg="#000", font=("Calibri", 19), bd=0, text="Weight status: " + str(weightStatus))
                 showBmi.pack()
 
             else:
-                showBmi = Label(root, fg="#fff", bg="#000", font=("Calibri", 19), bd=0, text="Weight status: obese")
+                weightStatus = "obese"
+                showBmi = Label(root, fg="#fff", bg="#000", font=("Calibri", 19), bd=0, text="Weight status: " + weightStatus)
                 showBmi.pack()
+                
+            fileName = "nameAge.csv"
+            APPEND = "a"    
+            
+            with open(fileName, APPEND, encoding="utf-8") as fileObj:
+                fileObj.write(str(nameact.get()) + ", " + str(ageact.get()) + ", " + str(bmiActual) + ", " + weightStatus + "\n")
 
         except:
             messagebox.showerror("Invalid input", "The inputs that you have entered are not valid numbers or it is unable to divide by.")
