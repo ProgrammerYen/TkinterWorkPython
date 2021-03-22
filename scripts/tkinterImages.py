@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import ImageTk, Image
 
+# Creating root widget.
 root = Tk()
 root.title("Image Viewer")
 root.iconbitmap("logos/picture_photo_image_icon_131252.ico")
