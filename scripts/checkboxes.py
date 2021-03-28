@@ -10,17 +10,16 @@ win.title("PizzaTop")
 win.resizable(False, False)
 win.iconbitmap("logos/food-pizza_115113.ico")
 
-label_show = Label(win, text="Current option chosen:")
+label_show = Label(win, text="         Current option chosen:         ")
 label_show.pack()
 
 string_var = StringVar()
-string_var.set(None)
 
 ask_topping = Label(root, text="Choose your toppings")
-ask_topping.grid(row=0, column=0)
+ask_topping.pack()
 
-frame = Frame(root)
-frame.grid(row=1, column=0, padx=30, pady=30)
+frame = Frame(root, padx=10)
+frame.pack(ipadx=53, anchor=W)
 
 def show_button_check():
     global label_checkbox
@@ -32,6 +31,7 @@ toppings = [("Cheese", "Cheese"), ("Pepperoni", "Pepperoni"), ("Chicken", "Chick
 
 for key, value in toppings:
     checkbox = Checkbutton(frame, text=key, onvalue=value, variable=string_var, command=show_button_check)
+    checkbox.deselect()
     checkbox.pack(anchor=W)
 
 label_checkbox = Label(frame, text="")
