@@ -77,6 +77,11 @@ def askSubmit():
             
             with open(fileName, APPEND, encoding="utf-8") as fileObj:
                 fileObj.write(str(nameact.get()) + ", " + str(ageact.get()) + ", " + str(bmiActual) + ", " + weightStatus + "\n")
+                
+            name.delete(0, END)
+            age.delete(0, END)
+            nameact.delete(0, END)
+            ageact.delete(0, END)
 
         except:
             messagebox.showerror("Invalid input", "The inputs that you have entered are not valid numbers or it is unable to divide by.")
