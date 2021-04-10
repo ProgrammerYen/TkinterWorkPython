@@ -1,4 +1,5 @@
 from tkinter import *
+from encrypt_data import encrypt_data
 
 # Confinguring window and features
 root = Tk()
@@ -11,11 +12,29 @@ def submit():
     file_name = "address-book.db"
     APPEND = "a"
     
+    shift_numbers = []
+    
+    f_name_enc = encrypt_data(f_name.get().strip().lower())
+    l_name_enc = encrypt_data(l_name.get().strip().lower())
+    address_enc = encrypt_data(address.get().strip().lower())
+    city_enc = encrypt_data(city.get().strip().lower())
+    age_enc = encrypt_data(age.get().strip().lower())
+    postcode_enc = encrypt_data(postcode.get().strip().lower())
+    
     with open(file_name, APPEND, encoding="utf-8") as file_object:
         file_object.write(
-            f_name.get().strip().title() + ", " +  l_name.get().strip().title() + ", " + address.get().strip().title() + ", " +
-            city.get().strip().title() + ", " + age.get().strip().title() + ", " + postcode.get().strip().upper())
+            f_name_enc + ", " + l_name_enc  + ", " + address_enc + ", " + city_enc 
+            + ", " + age_enc + ", " + postcode_enc + "\n")
         
+    file_name2 = "encrypt-numbers.csv"
+    
+    with open(file_name2, APPEND, encoding="utf-8") as file_object:
+        for i in shift_numbers:
+            if i != shift_numbers[-1]:
+                file_object.write(str(i) + ",")
+                
+            else:
+                file_object.write(str(i) + "\n")             
         
     f_name.delete(0, END)
     l_name.delete(0, END)
