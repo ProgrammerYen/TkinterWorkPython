@@ -1,5 +1,4 @@
 from tkinter import *
-import sqlite3
 
 # Confinguring window and features
 root = Tk()
@@ -7,19 +6,23 @@ root.title("Databases")
 root.configure(bg="#2C3E50")
 root.resizable(False, False)
 
-# Create or connect to a database
-database_connect = sqlite3.connect("address-book.db")
-
-# Creating cursor
-cursor = database_connect.cursor()
-
-# Entry requests
-# first_name
-# last_namet
-# address
-# city
-# age
-# postal_code
+def submit():
+    """Submit data into database"""
+    file_name = "address-book.db"
+    APPEND = "a"
+    
+    with open(file_name, APPEND, encoding="utf-8") as file_object:
+        file_object.write(
+            f_name.get().strip().title() + ", " +  l_name.get().strip().title() + ", " + address.get().strip().title() + ", " +
+            city.get().strip().title() + ", " + age.get().strip().title() + ", " + postcode.get().strip().upper())
+        
+        
+    f_name.delete(0, END)
+    l_name.delete(0, END)
+    address.delete(0, END)
+    city.delete(0, END)
+    age.delete(0, END)
+    postcode.delete(0, END)
 
 label_top = Label(root, text="Sign up", font=("Calibri", 40), padx=220, pady=10, bg="#F89403", fg="white")
 label_top.grid(row=0, column=0, columnspan=2)
@@ -66,19 +69,13 @@ postcode = Entry(root, bg="#6C7A89", font=("Calibri", 25), highlightthickness=1,
 postcode.config(highlightbackground="#6C7A89", highlightcolor="#6C7A89")
 postcode.grid(row=6, column=1, pady=30)
 
-add_data = Button(root, text="Add to database", font=("Calibri", 30), padx=139, pady=10, bg="#0096FF", fg="white", activebackground="#0096FF",
-                   activeforeground="white")
+add_data = Button(root, text="Add to database", font=("Calibri", 30), padx=157, pady=10, bg="#F89403", fg="white", activebackground="#F89403",
+                   activeforeground="white", bd=0, command=submit)
 add_data.grid(row=7 , column=0, columnspan=2)
 
-selection = Button(root, text="Show selection", font=("Calibri", 30), padx=150, pady=10, bg="#0096FF", fg="white", activebackground="#0096FF",
-                   activeforeground="white")
-selection.grid(row=8, column=0, columnspan=2, pady=10)
-
-# Commit changes    
-database_connect.commit()
-
-# Close database connection
-database_connect.close()
+selection = Button(root, text="Show selection", font=("Calibri", 30), padx=167, pady=10, bg="#F89403", fg="white", activebackground="#F89403",
+                   activeforeground="white", bd=0)
+selection.grid(row=8, column=0, columnspan=2, pady=(11, 11))
 
 # Creating main event loop
 root.mainloop()
