@@ -2,13 +2,7 @@ import string
 import random
 
 def encrypt_data(data):
-    global shift_numbers
     shift_num = random.choice(list(range(1, 27)))
-    try:
-        shift_numbers.append(shift_num)
-        
-    except:
-        pass
     
     data_values = [int(i) if i.isdigit() else i for i in data] # Saving values of the data given.
     data_values_shifted = []
@@ -25,4 +19,4 @@ def encrypt_data(data):
         elif type(i) != int and not i.isalpha():
             data_values_shifted.append(i)
             
-    return "".join(data_values_shifted)
+    return "".join(data_values_shifted) + " " + str(shift_num)

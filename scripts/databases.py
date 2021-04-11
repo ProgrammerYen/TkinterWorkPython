@@ -6,6 +6,7 @@ root = Tk()
 root.title("Databases")
 root.configure(bg="#2C3E50")
 root.resizable(False, False)
+root.iconbitmap("logos/down_diagram_dropdown_diagram_chart_decrease_icon_153073.ico")
 
 def submit():
     """Submit data into database"""
@@ -15,26 +16,34 @@ def submit():
     shift_numbers = []
     
     f_name_enc = encrypt_data(f_name.get().strip().lower())
+    shift_numbers.append(f_name_enc.split()[-1])
+    
     l_name_enc = encrypt_data(l_name.get().strip().lower())
+    shift_numbers.append(l_name_enc.split()[-1])
+    
     address_enc = encrypt_data(address.get().strip().lower())
+    shift_numbers.append(address_enc.split()[-1])
+    
     city_enc = encrypt_data(city.get().strip().lower())
+    shift_numbers.append(city_enc.split()[-1])
+    
     age_enc = encrypt_data(age.get().strip().lower())
+    shift_numbers.append(age_enc.split()[-1])
+    
     postcode_enc = encrypt_data(postcode.get().strip().lower())
+    shift_numbers.append(postcode_enc.split()[-1])
     
     with open(file_name, APPEND, encoding="utf-8") as file_object:
         file_object.write(
-            f_name_enc + ", " + l_name_enc  + ", " + address_enc + ", " + city_enc 
-            + ", " + age_enc + ", " + postcode_enc + "\n")
+            "".join(f_name_enc.split()[:-1]) + ", " + "".join(l_name_enc.split()[:-1])  + ", " + "".join(address_enc.split()[:-1])
+            + ", " + "".join(city_enc.split()[:-1]) + ", " + "".join(age_enc.split()[:-1]) + ", " + "".join(postcode_enc.split()[:-1]) + 
+            "\n")
         
-    file_name2 = "encrypt-numbers.csv"
+    file_name2 = "encrypt-data-nums.csv"
     
-    with open(file_name2, APPEND, encoding="utf-8") as file_object:
-        for i in shift_numbers:
-            if i != shift_numbers[-1]:
-                file_object.write(str(i) + ",")
-                
-            else:
-                file_object.write(str(i) + "\n")             
+    with open(file_name2, APPEND, encoding="utf-8") as file_object:             
+        file_object.write(shift_numbers[0] + ", " + shift_numbers[1] + ", " + shift_numbers[2] + ", " + shift_numbers[3] + ", " +
+                          shift_numbers[4] + ", " + shift_numbers[5] + "\n")
         
     f_name.delete(0, END)
     l_name.delete(0, END)
@@ -88,13 +97,9 @@ postcode = Entry(root, bg="#6C7A89", font=("Calibri", 25), highlightthickness=1,
 postcode.config(highlightbackground="#6C7A89", highlightcolor="#6C7A89")
 postcode.grid(row=6, column=1, pady=30)
 
-add_data = Button(root, text="Add to database", font=("Calibri", 30), padx=157, pady=10, bg="#F89403", fg="white", activebackground="#F89403",
+add_data = Button(root, text="Add to database", font=("Calibri", 40), padx=106, pady=10, bg="#F89403", fg="white", activebackground="#F89403",
                    activeforeground="white", bd=0, command=submit)
 add_data.grid(row=7 , column=0, columnspan=2)
-
-selection = Button(root, text="Show selection", font=("Calibri", 30), padx=167, pady=10, bg="#F89403", fg="white", activebackground="#F89403",
-                   activeforeground="white", bd=0)
-selection.grid(row=8, column=0, columnspan=2, pady=(11, 11))
 
 # Creating main event loop
 root.mainloop()
