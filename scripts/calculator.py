@@ -150,28 +150,28 @@ def buttonEqual():
         e.insert(0, "Math Error")
 
 # Defining buttons.
-button_1 = Button(root, text="1", padx=35, pady=20, command=lambda: buttonClick(1), bg="#fff", bd=0, highlightthickness=2,
+button_1 = Button(root, text="1", padx=38, pady=20, command=lambda: buttonClick(1), bg="#fff", bd=0, highlightthickness=2,
                   font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
 button_2 = Button(root, text="2", padx=35, pady=20, command=lambda: buttonClick(2), bg="#fff", bd=0, highlightthickness=2,
                   font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
 button_3 = Button(root, text="3", padx=40, pady=18, command=lambda: buttonClick(3), bg="#fff", bd=0, highlightthickness=2,
                   font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
 
-button_4 = Button(root, text="4", padx=35, pady=20, command=lambda: buttonClick(4), bg="#fff", bd=0, highlightthickness=2,
+button_4 = Button(root, text="4", padx=38, pady=20, command=lambda: buttonClick(4), bg="#fff", bd=0, highlightthickness=2,
                   font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
 button_5 = Button(root, text="5", padx=35, pady=20, command=lambda: buttonClick(5), bg="#fff", bd=0, highlightthickness=2,
                   font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
 button_6 = Button(root, text="6", padx=35, pady=20, 
 command=lambda: buttonClick(6), bg="#fff", bd=0, highlightthickness=2, font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
 
-button_7 = Button(root, text="7", padx=35, pady=20, command=lambda: buttonClick(7), bg="#fff", bd=0, highlightthickness=2,
+button_7 = Button(root, text="7", padx=38, pady=20, command=lambda: buttonClick(7), bg="#fff", bd=0, highlightthickness=2,
                   font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
 button_8 = Button(root, text="8", padx=35, pady=20, command=lambda: buttonClick(8), bg="#fff", bd=0, highlightthickness=2,
                   font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
 button_9 = Button(root, text="9", padx=35, pady=20, command=lambda: buttonClick(9), bg="#fff", bd=0, highlightthickness=2,
                   font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
  
-button_0 = Button(root, text="0", padx=85, pady=21, command=lambda: buttonClick(0), bg="#fff", bd=0, highlightthickness=2,
+button_0 = Button(root, text="0", padx=86, pady=21, command=lambda: buttonClick(0), bg="#fff", bd=0, highlightthickness=2,
                   font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
 button_add = Button(root, text="+", padx=40, pady=20, command=lambda: buttonAdd(), bg="#fff", bd=0, highlightthickness=2,
                     font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
@@ -185,11 +185,11 @@ button_div = Button(root, text="÷", padx=40, pady=20, command=lambda: buttonDiv
 button_equal = Button(root, text="=", padx=41.5, pady=23, command=lambda: buttonEqual(), bg="orange", bd=0, highlightthickness=0,
                       font=("Calibri", 18), activebackground="#fff", activeforeground="orange", fg="#fff")
 
-button_clear = Button(root, text="AC", padx=30, pady=17, command=lambda: buttonClear(), bg="#fff", bd=0, highlightthickness=2,
+button_clear = Button(root, text="AC", padx=30, pady=19, command=lambda: buttonClear(), bg="#fff", bd=0, highlightthickness=2,
                       font=("Calibri", 18), activebackground="orange", activeforeground="#fff", fg="orange")
-button_sqrt = Button(root, text="√", padx=35, pady=17, command=lambda: buttonSqrt(), bg="#fff", bd=0, highlightthickness=2,
+button_sqrt = Button(root, text="√", padx=35, pady=19, command=lambda: buttonSqrt(), bg="#fff", bd=0, highlightthickness=2,
                      font=("Calibri", 18), activebackground="orange", activeforeground="#fff", fg="orange")
-button_perc = Button(root, text="%", padx=34, pady=17, command=lambda: buttonPerc(), bg="#fff", bd=0, highlightthickness=2,
+button_perc = Button(root, text="%", padx=34, pady=19, command=lambda: buttonPerc(), bg="#fff", bd=0, highlightthickness=2,
                      font=("Calibri", 18), activebackground="orange", activeforeground="#fff", fg="orange")
 
 decimal_point = Button(root, text=".", padx=40, pady=13, command=lambda: buttonClick("."), bg="#fff", bd=0, highlightthickness=2,
