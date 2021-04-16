@@ -29,7 +29,7 @@ def calculate_age():
             else:
                 submit_info.pack_forget()
                 label_age = Label(root, text=name_entry.get().title().strip() + " is " + str(age_years) + " years old.", font=("Calibri", 25),
-                                fg="#fff", bg="#101a36").pack(anchor=W)
+                                fg="#fff", bg="#101a36").pack(anchor=W, padx=10)
                 submit_info.pack(pady=(20, 10))
             
     except:
