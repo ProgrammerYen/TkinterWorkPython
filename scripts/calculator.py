@@ -7,25 +7,44 @@ root.resizable(False, False)
 root.iconbitmap("logos/Calculator_30001.ico")
 root.configure(bg="#fff")
 
-
 # Input field
-e = Entry(root, width=12, justify=RIGHT, bg="#f2f2f0", bd=0, highlightthickness=0, font=("Calibri", 50))
+e = Entry(root, width=10, justify=RIGHT, bg="#f2f2f0", bd=0, highlightthickness=0, font=("Calibri", 60))
 e.config(highlightcolor="#f2f2f0", highlightbackground="#f2f2f0")
-e.grid(row=0, column=0, columnspan=4, ipady=90)    
+e.grid(row=0, column=0, columnspan=4, ipady=110)    
 
 # Defining functions
 def buttonClick(num):
-  current = e.get()
-  e.delete(0, END)
-  e.insert(0, str(current)+str(num))
-  fnum = str(current) + str(num)
+  global fnum_dup
+  fnum_dup = ""
+  if num == "-":
+    current = e.get()
+    if current == "":
+      e.delete(0, END)
+      e.insert(0, "-" + str(current))
+      fnum = "-" + str(current)
+      fnum_dup = fnum   
+      
+    else:
+      e.delete(0, END)
+      e.insert(0, -1 * int(current))
+      fnum = -1 * int(current)
+      fnum_dup = fnum
+         
+  else:  
+    current = e.get()
+    e.delete(0, END)
+    e.insert(0, str(current) + str(num))
+    fnum = str(current) + str(num)
+    fnum_dup = fnum
 
 def buttonClear():
   e.delete(0,END)
 
+
 def buttonAdd():
   global fnum
   global math
+  
   newNum = e.get()
   math = "a"
   fnum = float(newNum)
@@ -34,46 +53,48 @@ def buttonAdd():
 def buttonSub():
   global fnum
   global math
+  
   newNum = e.get()
   math = "s"
   fnum = float(newNum)
   e.delete(0,END)
 
+
 def buttonMul():
   global fnum
   global math
+  
   newNum = e.get()
   math = "m"
   fnum = float(newNum)
   e.delete(0,END)
 
+
 def buttonDiv():
   global fnum
   global math
+  
   newNum = e.get()
   math = "d"
   fnum = float(newNum)
   e.delete(0,END)
 
+
 def buttonSqrt():
   global fnum
   global math
+  
   newNum = e.get()
   math = "sqrt"
-  fnum = newNum
-  e.delete(0,END)
-
-def buttonPerc():
-  global fnum
-  global math
-  newNum = e.get()
-  math = "p"
   fnum = float(newNum)
   e.delete(0,END)
+
 
 def buttonEqual():
   global snum
   global math
+  global fnum_dup
+  
   snum = e.get()
   e.delete(0,END)
 
@@ -136,19 +157,8 @@ def buttonEqual():
             e.insert(0, res)
     except:
         e.insert(0, "Math Error")
-
-  if math == "p":
-    try:
-        res = round((float(fnum) / 100) * float(snum), 10)
-        if res.is_integer():
-            e.insert(0, str(int(res)))
-
-        else:
-            e.insert(0, str(res))
-            
-    except:
-        e.insert(0, "Math Error")
-
+        
+        
 # Defining buttons.
 button_1 = Button(root, text="1", padx=38, pady=20, command=lambda: buttonClick(1), bg="#fff", bd=0, highlightthickness=2,
                   font=("Calibri", 18), activebackground="orange", activeforeground="#fff")
@@ -189,14 +199,15 @@ button_clear = Button(root, text="AC", padx=30, pady=19, command=lambda: buttonC
                       font=("Calibri", 18), activebackground="orange", activeforeground="#fff", fg="orange")
 button_sqrt = Button(root, text="√", padx=35, pady=19, command=lambda: buttonSqrt(), bg="#fff", bd=0, highlightthickness=2,
                      font=("Calibri", 18), activebackground="orange", activeforeground="#fff", fg="orange")
-button_perc = Button(root, text="%", padx=34, pady=19, command=lambda: buttonPerc(), bg="#fff", bd=0, highlightthickness=2,
-                     font=("Calibri", 18), activebackground="orange", activeforeground="#fff", fg="orange")
 
 decimal_point = Button(root, text=".", padx=40, pady=13, command=lambda: buttonClick("."), bg="#fff", bd=0, highlightthickness=2,
                        font=("Calibri", 23), activebackground="orange", activeforeground="#fff")
 
+button_minus = Button(root, text="+/-", padx=22, pady=13, command=lambda: buttonClick("-"), bg="#fff", bd=0, highlightthickness=2,
+                       font=("Calibri", 23), activebackground="orange", activeforeground="#fff", fg="orange")
+
 var_list = [button_1, button_2, button_3, button_4, button_5, button_6, button_7, button_8, button_9, button_0, button_add, button_sub,
-            button_mul, button_div, button_equal, button_clear, button_sqrt, button_perc]
+            button_mul, button_div, button_equal, button_clear, button_sqrt]
 for i in var_list:
     i.config(highlightbackground="#fff", highlightcolor="#fff")
 
@@ -214,10 +225,10 @@ button_3.grid(row=4, column=2)
 
 button_0.grid(row=5, column=0, columnspan=2)
 
-button_perc.grid(row=1, column=2)
+button_minus.grid(row=1, column=2)
 
-button_sub.grid(row=1, column=3)
-button_add.grid(row=2, column=3)
+button_add.grid(row=1, column=3)
+button_sub.grid(row=2, column=3)
 button_mul.grid(row=3, column=3)
 button_div.grid(row=4, column=3)
 button_sqrt.grid(row=1, column=1)
