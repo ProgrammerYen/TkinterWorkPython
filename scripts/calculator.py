@@ -86,8 +86,8 @@ def buttonSqrt():
   
   newNum = e.get()
   math = "sqrt"
-  fnum = float(newNum)
-  e.delete(0,END)
+  fnum = newNum
+  e.delete(0, END)
 
 
 def buttonEqual():
