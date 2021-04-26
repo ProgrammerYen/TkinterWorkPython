@@ -21,15 +21,15 @@ class Signup:
 
         # Create frame to allow the user to put in their details.
         self.frame = Frame(self.root, bg="#fff", padx=55, pady=30)
-        self.frame.place(x=75, y=164, height=340, width=400)
+        self.frame.place(x=75, y=164, height=380, width=400)
 
         # Title for frame that says Join SmartX
         self.txt = "Login Here"
         self.count = 0
         self.text = '' 
-        self.color = ["#00d5ff","#f29844", "red2", "#59ff00"]
+        self.color = ["#00d5ff","#f29844", "red2", "#8B4513"]
         self.heading = Label(self.frame,text=self.txt, font=("Impact", 35),bg="#fff",fg="#00d5ff")
-        self.heading.pack(anchor=W)
+        self.heading.pack(anchor=W, pady=(0, 20))
         self.slider()
         self.heading_color()	
 
@@ -39,17 +39,17 @@ class Signup:
         # Creating entry box for email and password.
         self.entry = Entry(self.frame, width=25, font=("Calibri", 15), fg="orange", bg="#fff", highlightthickness=1, bd=0)
         self.entry.config(highlightcolor="orange", highlightbackground="orange")
-        self.entry.pack(anchor=W)
+        self.entry.pack(anchor=W, pady=(0,5))
 
-        self.password_lbl = Label(self.frame, text="Password", font=("Calibri", 20), bg="#fff", fg="orange")
+        self.password_lbl = Label(self.frame, text="Create a Password", font=("Calibri", 20), bg="#fff", fg="orange")
         self.password_lbl.pack(anchor=W)
 
         self.entry_p = Entry(self.frame, width=25, font=("Calibri", 15), fg="orange", bg="#fff", highlightthickness=1, bd=0)
         self.entry_p.config(highlightcolor="orange", highlightbackground="orange")
-        self.entry_p.pack(anchor=W, pady=(0, 40))
+        self.entry_p.pack(anchor=W)
 
-        self.signup_btn = Button(self.frame, text="Login", font=("Ubuntu", 20), bg="#00d5ff", fg="#fff", bd=0, padx=40, pady=20)
-        self.signup_btn.pack(anchor=CENTER)
+        self.login_btn = Button(self.frame, text="Login", font=("yu gothic ui", 20), bg="#00d5ff", fg="#fff", bd=0, padx=40, pady=4)
+        self.login_btn.pack(anchor=CENTER, pady=(40, 0))
 
     
     def slider(self):
