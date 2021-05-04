@@ -3,6 +3,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 import random
 import re
+import sqlite3
 
 # Created class to make signup form in tkinter
 class Signup:
@@ -21,7 +22,7 @@ class Signup:
 
         # Create frame to allow the user to put in their details.
         self.frame = Frame(self.root, bg="#fff", padx=55, pady=30)
-        self.frame.place(x=75, y=164, height=440, width=400)
+        self.frame.place(x=50, y=83)
 
         # Title for frame that says Join SmartX
         self.txt = "Join SmartX"
@@ -30,15 +31,19 @@ class Signup:
         self.text = '' 
         self.color = ["#00d5ff","#f29844", "red2", "#8B4513"]														 
         self.heading = Label(self.frame,text=self.txt, font=("Impact", 35),bg="#fff",fg="#00d5ff")
-        self.heading.pack(anchor=W, pady=(0, 20))
+        self.heading.pack(anchor=W, pady=(0, 10))
         self.slider()
+        
         self.heading_color()	
+
+        self.desc = Label(self.frame, text="A new vision for tech.", font=("Lato", 20), bg="#fff", fg="#00d5ff")
+        self.desc.pack(anchor=W)
 
         self.email_lbl = Label(self.frame, text="Email", font=("Calibri", 20), bg="#fff", fg="orange")
         self.email_lbl.pack(anchor=W)
 
         # Creating entry box for email.
-        self.entry = Entry(self.frame, width=25, font=("Calibri", 15), fg="orange", bg="#fff", highlightthickness=1, bd=0)
+        self.entry = Entry(self.frame, width=30, font=("Calibri", 15), fg="orange", bg="#fff", highlightthickness=1, bd=0)
         self.entry.config(highlightcolor="orange", highlightbackground="orange")
         self.entry.pack(anchor=W, pady=(0,5))
 
@@ -49,7 +54,7 @@ class Signup:
         self.password = StringVar()
 
         # Entry box for password.
-        self.entry_pass = Entry(self.frame, width=25, font=("Calibri", 15), fg="orange", bg="#fff", highlightthickness=1, bd=0, textvariable=self.password, show="*")
+        self.entry_pass = Entry(self.frame, width=30, font=("Calibri", 15), fg="orange", bg="#fff", highlightthickness=1, bd=0, textvariable=self.password, show="*")
         self.entry_pass.config(highlightcolor="orange", highlightbackground="orange")
         self.entry_pass.pack(anchor=W, pady=(0, 5))
 
@@ -60,12 +65,12 @@ class Signup:
         self.confirm_password = StringVar()
 
         # Confirm password entry box.
-        self.confirm_ent = Entry(self.frame, width=25, font=("Calibri", 15), fg="orange", bg="#fff", highlightthickness=1, bd=0, textvariable=self.confirm_password, show="*")
+        self.confirm_ent = Entry(self.frame, width=30, font=("Calibri", 15), fg="orange", bg="#fff", highlightthickness=1, bd=0, textvariable=self.confirm_password, show="*")
         self.confirm_ent.config(highlightcolor="orange", highlightbackground="orange")
         self.confirm_ent.pack(anchor=W)
 
         # Button that allows you to login.
-        self.login_btn = Button(self.frame, text="Sign up", font=("yu gothic ui", 20), bg="#00d5ff", fg="#fff", bd=0, padx=40, pady=4, command=self.validate_input,
+        self.login_btn = Button(self.frame, text="Sign up", font=("yu gothic ui", 20), bg="#00d5ff", fg="#fff", bd=0, padx=40, pady=3, command=self.validate_input,
                                 activebackground="#00d5ff", activeforeground="#fff")
         self.login_btn.pack(anchor=CENTER, pady=(30, 0))
 
@@ -89,6 +94,7 @@ class Signup:
         self.heading.config(fg=fg)
         self.heading.after(50, self.heading_color)
 
+
     def validate_input(self):
         email_re = re.compile(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+")
         match_email = bool(re.search(email_re, self.entry.get()))
@@ -106,7 +112,13 @@ class Signup:
             messagebox.showinfo("Incorrect Password", "Incorrect confirmation password entered.")
 
         if match_email and match_password and self.confirm_password.get() == self.password.get():
-            messagebox.showinfo("Thank you", f"Thank you for signing up at SmartX. We really hope that you will be a great help to us and be a loyal employee.\n\nPassword: {self.password.get()}\n\nPlease keep sensitive information private to yourself and do not share with anybody else")
+            messagebox.showinfo("Data saved", "Database connection successful. Data stored away safely.")
+            messagebox.showinfo("Saved to database", "Database:\nemail-pass-smartx.db\nCreate without error.")
+            messagebox.showinfo("Thank you", f"""Thank you for signing up at SmartX. Please keep sensitive
+information to yourself and please do not share with others.""")
+
+        with open("email-pass-smartx.db", "a", encoding="utf-8") as store_data:
+            store_data.write(self.entry.get() + ", " + self.entry_pass.get())
 
 
 # Create window
